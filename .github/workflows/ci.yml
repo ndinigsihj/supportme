@@ -29,7 +29,7 @@ jobs:
           else
             echo "should_run=false" >> $GITHUB_OUTPUT
           fi
-          echo "今天星期: $CURRENT_DAY, 随机数: $RANDOM_NUM, 是否运行: $(cat $GITHUB_OUTPUT | grep should_run | cut -d= -f2)"
+          echo "随机数: $RANDOM_NUM, 是否运行: $(cat $GITHUB_OUTPUT | grep should_run | cut -d= -f2)"
 
       - name: Auto green
         if: steps.daily_check.outputs.should_run == 'true'
