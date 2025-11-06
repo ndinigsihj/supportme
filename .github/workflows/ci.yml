@@ -20,8 +20,8 @@ jobs:
       - name: Daily random check
         id: daily_check
         run: |
-          # 使用年份+周数+天数作为随机种子，确保每天结果一致
-          DAY_SEED=$(date +%Y%V%u)
+          # 使用秒级时间戳，确保每次运行都不同 
+          DAY_SEED=$(date +%Y%V%u%S)
           RANDOM_NUM=$((0x$(echo -n $DAY_SEED | md5sum | cut -c1-8) % 7))
           # 如果随机数小于3则运行（3/7 ≈ 42.8%概率，接近每周3次）
           if [ $RANDOM_NUM -lt 3 ]; then
